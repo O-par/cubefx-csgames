@@ -109,6 +109,12 @@ You won't need to compute memory offsets manually because `layout.rs` handles st
 
 ## Getting Started
 
+### Fork
+
+First, fork this repository (use the `Fork` button in the upper-right corner of the GitHub page).
+During the competition, you will be asked to provide the link to your fork.
+Then make sure to be working on your personal fork, especially for your last commit.
+
 ### Running the Application
 
 ```bash
@@ -339,9 +345,7 @@ If this occurs, the tied teams’ submissions will be benchmarked again on a dif
 
 ### Submission
 
-First, fork this repository (use the `Fork` button in the upper-right corner of the GitHub page).
-During the competition, you will be asked to provide the link to your fork.
-
+Make sure to push on your personal fork.
 Only your **final commit** will be evaluated. Make sure it:
 
 1. Passes both critical correctness tests
@@ -403,7 +407,7 @@ Cette opération mathématique convertit un signal dans le domaine temporel en s
 ```
 Domaine temporel (signal) :   Domaine fréquentiel (spectre) :
 
-    ∿∿∿                       |     |              |
+    ∿∿                        |     |              |
    ∿  ∿                       |     |     |        |
   ∿    ∿        ──→           |     |     |   |    |
  ∿      ∿                     └─────┴─────┴───┴────┴──
@@ -478,6 +482,10 @@ Disposition logique :  Mémoire (plate) :
 Vous n'aurez pas besoin de calculer manuellement les décalages mémoire, car `layout.rs` gère les _strides_ à votre place. Si vous êtes curieux des détails, c'est l'endroit où regarder.
 
 ## Démarrage
+
+Commencez par forker ce dépôt (utilisez le bouton `Fork` dans le coin supérieur droit de la page GitHub).
+Durant la compétition, on vous demandera de fournir le lien vers votre fork.
+Assurez-vous de travailler sur votre fork personnelle, en particulier pour votre dernier commit.
 
 ### Lancer l'application
 
@@ -707,9 +715,7 @@ Si cela se produit, les soumissions des équipes à égalité seront de nouveau 
 
 ### Soumission
 
-Commencez par forker ce dépôt (utilisez le bouton `Fork` dans le coin supérieur droit de la page GitHub).
-Durant la compétition, on vous demandera de fournir le lien vers votre fork.
-
+Make sure to push on your personal fork.
 Seul votre **dernier _commit_** sera évalué. Assurez-vous qu'il :
 
 1. Passe les deux tests de correction critiques

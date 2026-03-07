@@ -1,17 +1,17 @@
 use cubecl::{
-    prelude::*,
-    std::tensor::{AsView as _, AsViewExpand, AsViewMut, AsViewMutExpand, TensorHandle},
+ prelude::*, std::tensor::{AsView as _, AsViewExpand, AsViewMut, AsViewMutExpand, TensorHandle}
 };
 
 use crate::cube::BatchSignalLayout;
+
 
 /// Per-bin phase shift effect kernel
 ///
 /// Creates the output (real and imaginary) tensors
 /// then launches the per-bin phase shift kernel to fill them with the right values
 pub fn phase_shift<R: Runtime>(
-    input_re: TensorHandle<R>,
-    input_im: TensorHandle<R>,
+    input_re: &TensorHandle<R>,
+    input_im: &TensorHandle<R>,
     alpha: f32,
 ) -> (TensorHandle<R>, TensorHandle<R>) {
     let client = <R as Runtime>::client(&Default::default());
@@ -21,8 +21,7 @@ pub fn phase_shift<R: Runtime>(
 
     let output_re = TensorHandle::new_contiguous(
         shape.clone(),
-        client.empty(num_elements * dtype.size()),
-        dtype,
+        client.empty(num_elements * dtype.size()), dtype,
     );
 
     let output_im =
@@ -54,6 +53,7 @@ pub fn phase_shift_launch<R: Runtime>(
 ) -> Result<(), LaunchError> {
     let cube_count = CubeCount::new_single();
     let cube_dim = CubeDim::new_single();
+    //TODO -> CHANGED TO 4 WAS 1 
     let vectorization = 1;
 
     phase_shift_kernel::launch::<R>(
@@ -69,6 +69,7 @@ pub fn phase_shift_launch<R: Runtime>(
     )
 }
 
+// TODO bottleneck, 
 #[cube(launch)]
 /// Kernel that loops over each window and applies the effect on each
 pub(crate) fn phase_shift_kernel<F: Float>(
@@ -116,8 +117,10 @@ pub(crate) fn phase_shift_kernel_one_window<F: Float>(
     let mut output_re_view = output_re.view_mut(output_re_layout);
     let mut output_im_view = output_im.view_mut(output_im_layout);
 
+    // TODO CHANGED 0..10 -> 0..1
     // We do it 10 times just to make sure
-    for k in 0..10 * num_freq_bins {
+    // #[unroll]
+    for k in 0..1  * num_freq_bins {
         let k = k % num_freq_bins;
 
         // Warning: if line size > 1, this will duplicate the same k, while we would want something like [x, x+1, x+2, x+3...

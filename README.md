@@ -33,7 +33,7 @@ This mathematical operation converts a time-domain signal into its frequency com
 ```
 Time Domain (signal):     Frequency Domain (spectrum):
 
-    ∿∿∿                   |     |              |
+    ∿∿                    |     |              |
    ∿  ∿                   |     |     |        |
   ∿    ∿        ──→       |     |     |   |    |
  ∿      ∿                 └─────┴─────┴───┴────┴──

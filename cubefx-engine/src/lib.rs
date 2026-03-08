@@ -32,6 +32,6 @@ pub fn phase_shift_effect<R: Runtime>(
     dtype: StorageType,
 ) -> TensorHandle<R> {
     let (spectrum_re, spectrum_im) = rfft(signal, dtype);
-    let (shifted_re, shifted_im) = phase_shift(spectrum_re, spectrum_im, alpha);
+    let (shifted_re, shifted_im) = phase_shift(&spectrum_re, &spectrum_im, alpha);
     irfft(shifted_re, shifted_im, dtype)
 }
